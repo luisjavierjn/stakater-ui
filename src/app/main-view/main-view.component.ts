@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from "../services/task.service";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
-  styleUrls: ['./main-view.component.css']
+  styleUrls: ['./main-view.component.css'],
+  providers: [DatePipe]
 })
 export class MainViewComponent implements OnInit {
-  title = 'stakater-ui';
+  title = "Stakater";
+  message = '';
 
-  constructor(private taskService: TaskService) { }
-  /*
-  onSubmit() {
-    this.salutation();
-  }*/
+  constructor(private datePipe: DatePipe, private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.salutation();
@@ -22,8 +21,8 @@ export class MainViewComponent implements OnInit {
   salutation() {
     this.taskService.getSalutation().subscribe(data => {
       if (data.status === 200) {
-        console.log(data.result);
-        this.title = data.result;
+        var myDate = this.datePipe.transform(new Date(), 'dd/MM/yyyy hh:mm:ss Z');
+        this.message = myDate + " " + data.result;
       } else {
         alert(data.message);
       }
