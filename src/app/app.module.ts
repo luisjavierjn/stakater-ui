@@ -13,7 +13,7 @@ import { AppRouting } from "./app.routing";
     MainViewComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRouting
   ],

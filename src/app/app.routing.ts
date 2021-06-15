@@ -5,4 +5,6 @@ const routes: Routes = [
   { path: '', component: MainViewComponent }
 ];
 
-export const AppRouting = RouterModule.forRoot(routes);
+export const AppRouting = RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled'
+});
